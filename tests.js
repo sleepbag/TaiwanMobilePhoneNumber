@@ -32,3 +32,11 @@ QUnit.test( "preAlpha code 2 test", function( assert ) {
   var result = mobile.Process();
   assert.ok( result == "", "Passed!" );
 });
+
+QUnit.test( "mix test", function( assert ) {
+
+  var mobile = new TaiwanMobilePhoneNumber("D09575959419 09575959419 0932050119");
+  var result = mobile.Process();
+  console.log(result);
+  assert.ok( result == "0932050119", "Passed!" );
+});
