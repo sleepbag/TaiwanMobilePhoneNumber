@@ -9,11 +9,12 @@ class TaiwanMobilePhoneNumber {
   Process(){
 
 
-    var stringArray = this._string.split(" ");
+    var stringArray = this._string.split(/[\s\n，,<>="]+/);
 
     for(var i =0; i < stringArray.length; i++){
 
       var tmp_text = stringArray[i].trim();
+      tmp_text = tmp_text.replace(/[^a-zA-Z0-9]/g,'');
       var phone = "";
       //
       if(tmp_text.length==10){
@@ -21,6 +22,7 @@ class TaiwanMobilePhoneNumber {
         if (phone == ""){
           phone = regEx_First(tmp_text,"\\s+09\\d{2}-?\\d{3}-?\\d{3}");
         }
+        if(phone != "") return phone;
       }
 
       if(tmp_text.length==12){
@@ -31,17 +33,9 @@ class TaiwanMobilePhoneNumber {
             phone = p.replace("886","0");
           }
         }
+        if(phone != "") return phone;
       }
 
-      if(tmp_text.length==13){
-        //
-        if(phone == ""){
-          var p = regEx_First(tmp_text,"\\+8869\\d{2}-?\\d{3}-?\\d{3}");
-          if(p != ""){
-            phone = p.replace("\+886","0");
-          }
-        }
-      }
     }
     return phone;
   }
