@@ -1,16 +1,24 @@
 class TaiwanMobilePhoneNumber {
   constructor(string){
+    this._string=""
+    if(string!=undefined){
       this._string = string;
+    }
   }
   getInitString(){
-    return this._string;
+    if(this._string!=undefined){
+      return this._string;
+    }
+    return "";
   }
 
   Process(){
-
-
-    var stringArray = this._string.split(/[\s\n，,<>="]+/);
-
+    
+    var stringArray = [];
+    if(this._string!= undefined){
+      stringArray = this._string.split(/[\s\n，,<>="]+/);
+    }
+    
     for(var i =0; i < stringArray.length; i++){
 
       var tmp_text = stringArray[i].trim();
